@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شرح ورقة عمل HTML و CSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7ff;--card:#fff;--tx:#1b2440;--mut:#5b6685;--pri:#4f46e5;--acc:#06b6d4;--ok:#16a34a;--no:#dc2626;--code:#0f172a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1020;--card:#151c33;--tx:#e8ecff;--mut:#9aa6cc}}
+:root[data-theme="dark"]{--bg:#0b1020;--card:#151c33;--tx:#e8ecff;--mut:#9aa6cc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Cairo',Tahoma,'Segoe UI',sans-serif;font-size:18px;line-height:1.8}
+header{background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;padding:28px 16px;text-align:center}
+header h1{margin:0;font-size:clamp(24px,5vw,38px);font-weight:900}
+header p{margin:6px 0 0;opacity:.92}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);box-shadow:0 2px 10px #0002;padding:8px;display:flex;gap:6px;overflow-x:auto}
+nav button{flex:none;border:0;border-radius:12px;padding:6px 14px;font:700 16px 'Cairo',Tahoma,sans-serif;background:var(--bg);color:var(--tx);cursor:pointer;transition:.2s}
+nav button.on{background:var(--pri);color:#fff;transform:scale(1.08)}
+nav .sp{flex:1}
+main{max-width:920px;margin:18px auto;padding:0 14px}
+.card{background:var(--card);border-radius:20px;padding:20px;box-shadow:0 6px 24px #0001;animation:in .5s}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.badge{display:inline-block;background:var(--pri);color:#fff;border-radius:20px;padding:0 14px;font-weight:700;font-size:15px;margin-inline-start:8px}
+h2{margin:0 0 8px;font-size:24px}
+.task{background:#fef3c7;color:#78350f;border-radius:12px;padding:10px 14px;margin:10px 0}
+h3{margin:16px 0 6px;color:var(--pri)}
+.codebox{position:relative;direction:ltr;text-align:left}
+pre{margin:0;background:var(--code);color:#e2e8f0;border-radius:14px;padding:14px;overflow-x:auto;font:15px/1.6 Consolas,'Courier New',monospace;white-space:pre}
+.cp{position:absolute;top:8px;right:8px;border:0;background:#334155;color:#fff;border-radius:8px;padding:2px 10px;cursor:pointer;font:13px sans-serif}
+.res{border:2px dashed var(--acc);border-radius:14px;overflow:hidden}
+.res iframe{width:100%;height:260px;border:0;background:#fff;display:block}
+.run{margin-top:8px;border:0;background:var(--acc);color:#fff;border-radius:12px;padding:6px 18px;font:700 16px 'Cairo',Tahoma,sans-serif;cursor:pointer}
+.ex{background:var(--bg);border-radius:12px;padding:10px 14px}
+.ex li{margin:4px 0}
+code{background:#6366f126;border-radius:6px;padding:0 6px;direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace;font-size:.9em}
+.steps{display:flex;justify-content:space-between;margin-top:16px}
+.steps button{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:8px 20px;font:700 16px 'Cairo',Tahoma,sans-serif;cursor:pointer}
+.steps button:disabled{opacity:.35}
+.opt{display:block;width:100%;text-align:start;margin:8px 0;padding:10px 14px;border:2px solid #8884;border-radius:14px;background:var(--card);color:var(--tx);font:700 17px 'Cairo',Tahoma,sans-serif;cursor:pointer;transition:.2s}
+.opt:hover:not(:disabled){border-color:var(--pri);transform:translateX(-4px)}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.no{background:var(--no);color:#fff;border-color:var(--no);animation:sh .4s}
+@keyframes sh{25%{transform:translateX(10px)}75%{transform:translateX(-10px)}}
+.bar{height:12px;background:#8883;border-radius:8px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--acc));transition:width .5s}
+.fb{min-height:30px;font-weight:700;margin-top:6px}
+.big{text-align:center;font-size:28px;font-weight:900}
+.wm{position:fixed;inset:0;pointer-events:none;z-index:9;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.wm span{font:900 clamp(34px,9vw,88px)/1 Georgia,serif;color:#6366f1;opacity:.08;transform:rotate(-28deg);white-space:nowrap;user-select:none}
+.fx{position:fixed;font-size:28px;pointer-events:none;z-index:20;transition:transform 1.2s ease-out,opacity 1.2s}
+</style>
+</head>
+<body>
+<div class="wm"><span>Miss Yasmin Essam</span></div>
+<header><h1>🌐 ورقة عمل HTML و CSS</h1><p>موقع «الذكاء الاصطناعي في حياتنا» — شرح الأكواد خطوة بخطوة + اختبار تفاعلي من 20 سؤالًا</p></header>
+<nav id="nav"></nav>
+<main id="m"></main>
+<script>
+const IMG='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120"><rect width="200" height="120" rx="12" fill="#4f46e5"/><text x="100" y="72" font-size="46" text-anchor="middle" fill="#fff">🤖 AI</text></svg>');
+const H=(t,b,x='')=>`<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n<head>\n  <meta charset="UTF-8">\n  <title>${t}</title>${x}\n</head>\n<body>\n${b}</body>\n</html>`;
+const b2='  <h1>الذكاء الاصطناعي في حياتنا</h1>\n  <p>يساعدنا الذكاء الاصطناعي في ترجمة الكلام فورًا على هاتفنا.</p>\n';
+const im='  <img src="images/ai.jpg" alt="صورة تعبر عن الذكاء الاصطناعي" width="200">\n';
+const b3=b2+im;
+const b4=b3+'  <ol>\n    <li>اقرأ عن الذكاء الاصطناعي</li>\n    <li>تواصل معنا</li>\n  </ol>\n';
+const L1='<a href="https://www.unesco.org/en/artificial-intelligence">اقرأ عن الذكاء الاصطناعي</a>',L2='<a href="contact.html">تواصل معنا</a>';
+const b5=b3+`  <ol>\n    <li>${L1}</li>\n    <li>${L2}</li>\n  </ol>\n`;
+const b8='  <div class="intro">\n    <h1>الذكاء الاصطناعي في حياتنا</h1>\n    <img src="images/ai.jpg" alt="صورة تعبر عن الذكاء الاصطناعي" width="200">\n  </div>\n  <div class="details">\n    <p>يساعدنا الذكاء الاصطناعي في ترجمة الكلام فورًا على هاتفنا.</p>\n    <ol>\n      <li>'+L1+'</li>\n      <li>'+L2+'</li>\n    </ol>\n  </div>\n';
+const LK='\n  <link rel="stylesheet" href="style.css">';
+const c7='  <h1>تواصل معنا</h1>\n  <form>\n    <label for="name">الاسم:</label>\n    <input type="text" id="name" name="name"><br><br>\n    <label for="email">البريد الإلكتروني:</label>\n    <input type="email" id="email" name="email"><br><br>\n    <button type="submit">إرسال</button>\n  </form>\n';
+const T='الذكاء الاصطناعي';
+const Q=[
+{n:1,pts:2,t:'إنشاء index.html وكتابة الهيكل الأساسي، وضبط اللغة العربية والاتجاه من اليمين لليسار، وإضافة عنوان لتبويب المتصفح.',
+ code:H(T,''),h:H(T,''),
+ ex:['<code>&lt;!DOCTYPE html&gt;</code> تخبر المتصفح أن الصفحة HTML5.','<code>lang="ar"</code> يحدد أن اللغة عربية.','<code>dir="rtl"</code> يجعل الكتابة من اليمين لليسار.','<code>&lt;title&gt;</code> هو الاسم الذي يظهر على علامة تبويب المتصفح (انظر أعلى النتيجة: الصفحة فارغة لأننا لم نضف محتوى بعد).']},
+{n:2,pts:2,t:'داخل body: عنوان رئيسي h1 بنص «الذكاء الاصطناعي في حياتنا» ثم فقرة p تشرح استخدامًا بسيطًا.',
+ code:b2,h:H(T,b2),ex:['<code>h1</code> أكبر عنوان في الصفحة ويُستخدم مرة واحدة.','<code>p</code> وسم الفقرة، نكتب فيها جملة عربية بسيطة.','كل وسم له بداية <code>&lt;p&gt;</code> ونهاية <code>&lt;/p&gt;</code>.']},
+{n:3,pts:1,t:'إضافة الصورة من مجلد images مع نص بديل مناسب.',
+ code:im,h:H(T,b3),ex:['<code>src</code> مسار الصورة: مجلد images ثم اسم الملف ai.jpg.','<code>alt</code> نص بديل يظهر إذا لم تظهر الصورة ويقرأه قارئ الشاشة.','وسم <code>img</code> لا يحتاج وسم نهاية.','(في النتيجة استخدمنا صورة بديلة لأن ai.jpg على جهازك.)']},
+{n:4,pts:2,t:'بعد الفقرة: قائمة مرتبة فيها عنصران: «اقرأ عن الذكاء الاصطناعي» ثم «تواصل معنا».',
+ code:b4.slice(b3.length),h:H(T,b4),ex:['<code>ol</code> قائمة مرتبة (تظهر بأرقام 1، 2).','<code>li</code> هو العنصر الواحد داخل القائمة.','انتبه: القائمة تُكتب بعد الفقرة مباشرة.']},
+{n:5,pts:2,t:'تحويل العنصر الأول إلى رابط لموقع اليونسكو، والثاني إلى رابط لصفحة contact.html.',
+ code:`<li>${L1}</li>\n<li>${L2}</li>`,h:H(T,b5),ex:['<code>a</code> وسم الرابط، والنص بين الوسمين هو ما يضغط عليه الطالب.','<code>href</code> عنوان الوجهة: رابط خارجي كامل لليونسكو، واسم الملف فقط لصفحة التواصل.','الملف contact.html يجب أن يكون في نفس مجلد index.html.']},
+{n:6,pts:2,t:'إنشاء contact.html داخل مجلد المشروع بنفس الهيكل الأساسي (عربي + من اليمين لليسار).',
+ code:H('تواصل معنا',''),h:H('تواصل معنا',''),ex:['نفس هيكل الصفحة الأولى تمامًا مع تغيير العنوان فقط.','لا تنسَ <code>lang="ar"</code> و <code>dir="rtl"</code>.']},
+{n:7,pts:3,t:'عنوان «تواصل معنا» ثم نموذج form فيه حقلان (الاسم والبريد) بتسمية واضحة، وزر «إرسال».',
+ code:c7,h:H('تواصل معنا',c7),ex:['<code>form</code> يحتوي كل عناصر النموذج.','<code>label for="name"</code> مرتبط بالحقل الذي <code>id="name"</code>؛ لذلك الضغط على الاسم يضع المؤشر في الحقل.','<code>type="email"</code> يتحقق أن المكتوب بريد صحيح.','<code>button type="submit"</code> زر الإرسال.','<code>&lt;br&gt;</code> ينزل بنا سطرًا جديدًا.']},
+{n:8,pts:2,t:'في index.html قسّم محتوى body إلى جزأين بـ div: الأول class="intro" (العنوان والصورة)، والثاني class="details" (الفقرة والقائمة).',
+ code:b8,h:H(T,b8),ex:['<code>div</code> صندوق نجمع فيه عناصر لنُنسّقها معًا.','<code>class</code> اسم نستخدمه لاحقًا في CSS للوصول للجزء.','intro: h1 + img ، details: p + ol.']},
+{n:9,pts:1,t:'إنشاء ملف style.css في مجلد المشروع وربطه بـ index.html داخل head.',
+ code:'<!-- داخل head في index.html -->\n<link rel="stylesheet" href="style.css">',h:H(T,b8,LK),css:'',ex:['<code>link</code> يربط ملف التنسيق بالصفحة.','<code>rel="stylesheet"</code> يعني أن الملف تنسيق.','<code>href</code> اسم الملف style.css.','يجب أن يكون داخل <code>head</code> وليس body.']},
+{n:10,pts:1,t:'في style.css غيّر لون خلفية الصفحة كاملة إلى الأزرق الفاتح.',
+ code:'body {\n  background-color: lightblue;\n}',css:'body{background-color:lightblue}',h:H(T,b8,LK),ex:['<code>body</code> هو المحدِّد (الصفحة كلها).','<code>background-color</code> خاصية لون الخلفية.','<code>lightblue</code> قيمة اللون (أزرق فاتح).','لا تنسَ الفاصلة المنقوطة <code>;</code> بعد كل خاصية.']},
+{n:11,pts:1,t:'نسّق جميع عناصر p: حجم الخط 40px ولون الخط رمادي.',
+ code:'p {\n  font-size: 40px;\n  color: gray;\n}',css:'body{background-color:lightblue}p{font-size:40px;color:gray}',h:H(T,b8,LK),ex:['<code>p</code> يؤثر على كل الفقرات.','<code>font-size</code> حجم الخط، و<code>px</code> وحدة البكسل.','<code>color</code> لون النص، و<code>gray</code> رمادي.']},
+{n:12,pts:1,t:'غيّر خلفية الجزء الأول intro إلى لون يختلف عن خلفية الصفحة مثل الأبيض.',
+ code:'.intro {\n  background-color: white;\n}',css:'body{background-color:lightblue}p{font-size:40px;color:gray}.intro{background-color:white}',h:H(T,b8,LK),ex:['النقطة <code>.</code> قبل الاسم تعني أننا نختار <b>class</b>.','<code>.intro</code> يختار الجزء الأول فقط.','الأبيض يظهر بوضوح فوق الأزرق الفاتح.']}
+];
+const fin='/* style.css الكامل */\nbody {\n  background-color: lightblue;\n}\np {\n  font-size: 40px;\n  color: gray;\n}\n.intro {\n  background-color: white;\n}';
+const QZ=[
+['أي سمة تجعل اتجاه الصفحة من اليمين لليسار؟',['dir="rtl"','lang="ar"','align="right"','rtl="true"'],0,'dir تحدد الاتجاه، وrtl = right to left.'],
+['أين يظهر محتوى وسم title؟',['داخل الصفحة','على تبويب المتصفح','أسفل الصفحة','لا يظهر'],1,'العنوان يظهر على علامة تبويب المتصفح.'],
+['الوسم المناسب للعنوان الرئيسي هو:',['p','h1','div','li'],1,'h1 هو أكبر عنوان.'],
+['الوسم المستخدم للفقرة:',['p','br','a','ol'],0,'p اختصار paragraph.'],
+['السمة التي تكتب النص البديل للصورة:',['src','href','alt','class'],2,'alt = النص البديل.'],
+['الوسم الذي ينشئ قائمة مرتبة (بأرقام):',['ul','ol','li','div'],1,'ol = ordered list.'],
+['عنصر واحد داخل القائمة يُكتب بوسم:',['li','p','a','td'],0,'li = list item.'],
+['وسم الرابط في HTML:',['link','a','href','url'],1,'a = anchor.'],
+['السمة التي تحدد وجهة الرابط:',['src','alt','href','for'],2,'href يحتوي العنوان.'],
+['وسم النموذج:',['input','form','label','table'],1,'form يجمع الحقول والزر.'],
+['السمة التي تربط label بالحقل:',['for','class','src','dir'],0,'for تساوي id الحقل.'],
+['لإنشاء زر إرسال نكتب:',['<button type="submit">','<send>','<input href>','<form button>'],0,'type="submit" يرسل النموذج.'],
+['وظيفة div الأساسية:',['تلوين الخط','تقسيم الصفحة لأجزاء','إضافة صورة','عمل رابط'],1,'div صندوق لتقسيم وتنظيم المحتوى.'],
+['المحدِّد الذي يختار class اسمه intro:',['#intro','intro','.intro','*intro'],2,'النقطة للـ class، والهاشتاج للـ id.'],
+['كود ربط ملف CSS:',['<link rel="stylesheet" href="style.css">','<css src="style.css">','<style href="style.css">','<script href="style.css">'],0,'link مع rel="stylesheet".'],
+['الخاصية المسؤولة عن لون الخلفية:',['color','background-color','font-size','border'],1,'background-color للخلفية، color للنص.'],
+['الخاصية التي تغيّر حجم الخط:',['font-size','text-size','size','font-style'],0,'font-size مثل 40px.'],
+['لتلوين النص باللون الرمادي نكتب:',['background: gray','text: gray','color: gray','font: gray'],2,'color: gray;'],
+['ماذا تضع بعد كل خاصية في CSS؟',[':','؛ (;)',',','.'],1,'الفاصلة المنقوطة ; تنهي الخاصية.'],
+['وسم link يوضع داخل:',['body','head','footer','p'],1,'يوضع داخل head.']
+];
+const nav=document.getElementById('nav'),m=document.getElementById('m');
+let cur=0,AC;
+function tone(f,d,ty='sine',v=.15,t0=0){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,AC.currentTime+t0);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+t0+d);o.connect(g);g.connect(AC.destination);o.start(AC.currentTime+t0);o.stop(AC.currentTime+t0+d)}catch(e){}}
+const sOK=()=>[523,659,784,1047].forEach((f,i)=>tone(f,.18,'triangle',.15,i*.09));
+const sNO=()=>{tone(180,.35,'sawtooth',.12);tone(120,.4,'sawtooth',.1,.15)};
+const sClk=()=>tone(700,.08,'square',.06);
+function burst(em,n=22){for(let i=0;i<n;i++){const s=document.createElement('span');s.className='fx';s.textContent=em[i%em.length];s.style.left='50%';s.style.top='55%';document.body.appendChild(s);requestAnimationFrame(()=>{s.style.transform=`translate(${(Math.random()-.5)*600}px,${(Math.random()-.9)*400}px) rotate(${Math.random()*360}deg)`;s.style.opacity=0});setTimeout(()=>s.remove(),1300)}}
+function frame(h,css){let s=h.replace(LK,css?`\n  <style>${css}</style>`:'').split('images/ai.jpg').join(IMG);if(h.includes('form'))s=s.replace('<body>','<body style="font-size:18px">');return s.replace('<body','<body style="font-family:Tahoma,sans-serif;margin:12px" data-x'.slice(0,0)+'<body')}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function tabs(){nav.innerHTML='';Q.forEach((q,i)=>{const b=document.createElement('button');b.textContent='س'+q.n;b.onclick=()=>go(i);nav.appendChild(b)});const f=document.createElement('button');f.textContent='📁 style.css';f.onclick=()=>go(12);nav.appendChild(f);const z=document.createElement('button');z.textContent='🎮 اختبار';z.onclick=()=>go(13);nav.appendChild(z)}
+function mark(){[...nav.children].forEach((b,i)=>b.classList.toggle('on',i===cur))}
+function go(i){cur=i;sClk();mark();window.scrollTo({top:0,behavior:'smooth'});if(i<12)lesson(i);else if(i==12)final();else quiz()}
+function lesson(i){const q=Q[i],sec=q.n<6?'السؤال الأول: إنشاء الصفحة الرئيسية':q.n<8?'السؤال الثاني: صفحة التواصل':'السؤال الثالث: تقسيم الصفحة وتنسيقها';
+m.innerHTML=`<div class="card"><small>${sec}</small><h2>المطلوب ${q.n}<span class="badge">${q.pts} ${q.pts>2?'درجات':q.pts==2?'درجتان':'درجة'}</span></h2><div class="task">📝 ${q.t}</div>
+<h3>💻 الكود</h3><div class="codebox"><pre id="c">${esc(q.code)}</pre><button class="cp">نسخ</button></div>
+<h3>👀 النتيجة بعد التشغيل</h3><div class="res"><iframe id="fr" sandbox="" title="result"></iframe></div><button class="run">▶ شغّل الكود</button>
+<h3>💡 الشرح ببساطة</h3><ul class="ex">${q.ex.map(e=>'<li>'+e+'</li>').join('')}</ul>
+<div class="steps"><button ${i==0?'disabled':''} id="pv">→ السابق</button><button id="nx">التالي ←</button></div></div>`;
+const fr=document.getElementById('fr'),run=()=>{fr.srcdoc=frame(q.h,q.css||'');tone(440,.1,'sine',.1);tone(660,.15,'sine',.1,.1)};run();
+m.querySelector('.run').onclick=run;m.querySelector('.cp').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(q.code);e.target.textContent='تم ✓';sClk()};
+document.getElementById('pv').onclick=()=>go(i-1);document.getElementById('nx').onclick=()=>go(i+1)}
+function final(){m.innerHTML=`<div class="card"><h2>📁 ملف style.css النهائي</h2><div class="task">هذا هو التنسيق الكامل الذي كتبته في الأسئلة 10 و11 و12.</div><div class="codebox"><pre>${esc(fin)}</pre></div><h3>✅ فحص النتيجة قبل التسليم</h3><ul class="ex"><li>افتح index.html وتأكد أن النص العربي من اليمين لليسار.</li><li>تحقق من ظهور العنوان والفقرة والصورة والقائمة المرقمة.</li><li>جرّب رابط اليونسكو ورابط صفحة التواصل.</li><li>تحقق من ظهور حقلي النموذج وزر الإرسال في contact.html.</li><li>تأكد أن خلفية intro مختلفة، وأن الصفحة أزرق فاتح، والفقرة 40px.</li><li>احفظ index.html و contact.html و style.css ومجلد images معًا داخل مجلد المشروع.</li></ul>
+<h3>🗂️ شكل مجلد المشروع</h3><pre>مشروع-التدريب/\n├── index.html\n├── contact.html\n├── style.css\n└── images/\n    └── ai.jpg</pre><div class="steps"><button id="pv">→ السابق</button><button id="nx">ابدأ الاختبار 🎮</button></div></div>`;
+document.getElementById('pv').onclick=()=>go(11);document.getElementById('nx').onclick=()=>go(13)}
+let qi=0,sc=0,done=false;
+function quiz(){qi=0;sc=0;ask()}
+function ask(){if(qi>=QZ.length)return end();done=false;const q=QZ[qi];
+m.innerHTML=`<div class="card"><b>سؤال ${qi+1} من 20</b> — النقاط: ⭐ ${sc}<div class="bar"><i style="width:${qi/20*100}%"></i></div><h2>${q[0]}</h2><div id="o"></div><div class="fb" id="fb"></div><div class="steps"><span></span><button id="nx" style="display:none">التالي ←</button></div></div>`;
+const o=document.getElementById('o');
+q[1].forEach((t,j)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span dir="auto">${esc(t)}</span>`;b.onclick=()=>pick(j);o.appendChild(b)});
+document.getElementById('nx').onclick=()=>{qi++;sClk();ask()}}
+function pick(j){if(done)return;done=true;const q=QZ[qi],bs=[...document.querySelectorAll('.opt')],fb=document.getElementById('fb');bs.forEach(b=>b.disabled=true);bs[q[2]].classList.add('ok');
+if(j==q[2]){sc++;sOK();burst(['🎉','⭐','✨','🎊']);fb.style.color='var(--ok)';fb.textContent='🎉 أحسنت! إجابة صحيحة. '+q[3]}
+else{bs[j].classList.add('no');sNO();burst(['😢','❌'],8);fb.style.color='var(--no)';fb.textContent='😅 حاول مرة أخرى في السؤال القادم. '+q[3]}
+const n=document.getElementById('nx');n.style.display='';n.textContent=qi==19?'النتيجة 🏆':'التالي ←'}
+function end(){const p=sc/20,msg=p>=.9?'🏆 ممتاز! أنت محترف HTML و CSS':p>=.7?'👏 جيد جدًا! راجع الأخطاء وستصل للقمة':p>=.5?'🙂 جيد، راجع الشرح مرة أخرى':'💪 لا بأس، ابدأ من السؤال الأول وكرر المحاولة';
+m.innerHTML=`<div class="card big"><div style="font-size:70px">${p>=.7?'🏆':'📚'}</div>درجتك ${sc} من 20<div class="bar"><i style="width:${p*100}%"></i></div><p>${msg}</p><button class="run" id="rs">🔁 أعد الاختبار</button></div>`;
+document.getElementById('rs').onclick=quiz;setTimeout(()=>{document.querySelector('.bar i').style.width=p*100+'%'},50);if(p>=.5){sOK();burst(['🎉','🎊','⭐','🏆'],40)}else sNO()}
+tabs();go(0);
+</script>
+</body>
+</html>
